@@ -1,22 +1,34 @@
 import React from "react";
-import card1 from '../images/image12.png';
-import star from '../images/Star.png';
-function Card(){
+
+
+function Card(props){
+    
+    //Validacion para badge de sold out
+    let badgeText
+    if (props.item.openSpots === 0) {
+        badgeText = "SOLD OUT"
+    } else if (props.item.location === "Online") {
+        badgeText = "ONLINE"
+    }
 
 return(
     <div className="card">
-    <img src={card1} className="card--image" alt="card"/>
+        {badgeText && <div className="card--badge"> {badgeText}</div>}
+    <img src={`./${props.item.coverImg}`} className="card--image" alt="card"/>
     <div className="card--stats">
-        <img src={star} className="card--star" alt="star"/>
-        <span>5.0</span>
-        <span className="gray">(6) • </span>
-        <span className="gray">USA</span>
+        <img src="images/Star.png" className="card--star" alt="star"/>
+        <span>{props.item.stats.rating}</span>
+        <span className="gray">({props.item.statsreviewCount}) • </span>
+        <span className="gray">{props.item.location} </span>
     </div>
-    <p>Life Lessons with Katie Zaferes</p>
-    <p><span className="bold">From $136</span> / person</p>
+    <p className="card--title">{props.item.title}</p>
+    <p className="card--price"><span className="bold">From ${props.item.price}</span> / person</p>
 </div>
     );
 }
 
 
 export default Card;
+
+
+// `../images/${props.img}`
