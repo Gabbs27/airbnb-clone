@@ -1,44 +1,13 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-//import Card from "./components/Card";
-//import data from "./data";
-import React, { useState, useEffect } from "react";
 
-function App() {
-  const [tabl, setTabl] = useState([]);
-
-  useEffect(() => {
-    fetch("https://gorest.co.in/public/v2/users")
-      .then((response) => response.json())
-      .then((data) => {
-        setTabl(data);
-      });
-  }, []);
-  const cards = tabl.map((item) => {
-    return (
-      <tr>
-        <td>{item.name}</td>
-        <td>{item.email}</td>
-        <td>{item.gender}</td>
-        <td>{item.status}</td>
-      </tr>
-    );
   });
   return (
     <div className='App'>
       <Navbar />
       <Hero />
-      <table>
-        <tr>
-          <td>Name</td>
-          <td>Email</td>
-          <td>gender</td>
-          <td>status</td>
-        </tr>
-
-        {cards}
-      </table>
+      <section className='cards-list'>{cards}</section>
     </div>
   );
 }
